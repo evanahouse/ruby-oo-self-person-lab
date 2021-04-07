@@ -17,9 +17,10 @@ class Person
             @happiness = 0
         elsif point > 10
             @happiness = 10    
-        elsif point < 10 
+        else
             @happiness = point
         end
+        #  point < 0 ? @happiness = 0 : point > 10 ? @happiness = 10 : @happiness = point
     end
 
     def hygiene=(point)
@@ -27,9 +28,10 @@ class Person
             @hygiene = 0
         elsif point > 10
             @hygiene = 10    
-        elsif point < 10 
+        else
             @hygiene = point
         end
+        # point < 0 ? @hygiene = 0 : point > 10 ? @hygiene = 10 : @hygiene = point
     end
 
     # def max_happiness? 
@@ -61,13 +63,31 @@ class Person
     end
 
     def work_out 
-        @happiness += 2
+        self.happiness += 2
         self.hygiene -= 3
         "♪ another one bites the dust ♫"
     end
 
     def call_friend(friend)
-        self.max_happiness ? @happiness=10 : @happiness += (10 - @happiness)
+        self.happiness += 3
+        friend.happiness += 3
+        "Hi #{friend.name}! It's #{self.name}. How are you?"
+    end
+
+    def start_conversation(person, topic)
+        if topic == 'politics' 
+            self.happiness -= 2
+            person.happiness -= 2
+            "blah blah partisan blah lobbyist"
+        elsif topic == 'weather'
+            self.happiness += 1
+            person.happiness +=1
+            "blah blah sun blah rain"
+        else
+            "blah blah blah blah blah"
+        end
+
+
     end
 
 end
